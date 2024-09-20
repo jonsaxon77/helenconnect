@@ -1,11 +1,15 @@
 let express = require('express');
+const expressWinston = require('express-winston');
+const logger = require('./logger');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const sql = require('mssql');
-
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+const referrals = require('./routes/referrals');
+
 dotenv.config();
 
 let allowedOrigins = [
@@ -54,15 +58,32 @@ const config = {
 
 sql.connect(config, (err) => {
     if(err) {
-        console.error('Database connection failed:', err);
+        logger.error('Database connection failed:', err);
     } else {
-        console.log('Connected to the database');
+        logger.info('Connected to the database');
     }
 });
+
+app.use(expressWinston.logger({
+    winstonInstance: logger,
+    meta: true, // optional: control whether you want to log the meta data about the request (default to true)   
+    msg: "HTTP {{req.method}} {{req.url}} {{res.statusCode}} {{res.responseTime}}ms",
+    expressFormat: true,
+    colorize: false, 
+    ignoreRoute: function (req, res) { return false; } 
+ 
+}));
+
+app.use('/api/referrals', referrals)
 
 app.get('/', (req, res) => {
     res.send('Helen Connect server is operational');
 });
+
+
+app.use(expressWinston.errorLogger({
+    winstonInstance: logger,
+}));
 
 app.listen(process.env.PORT || PORT, function () {
     console.log("App listening on", PORT);
