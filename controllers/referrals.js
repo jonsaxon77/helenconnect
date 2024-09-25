@@ -38,6 +38,9 @@ async function getReferral(req, res) {
 }
 
 async function addReferral(req, res) {
+
+    logger.debug(req);
+
     const {
       Area,
       ContactType,
