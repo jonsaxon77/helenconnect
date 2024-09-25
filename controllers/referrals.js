@@ -38,6 +38,8 @@ async function getReferral(req, res) {
 }
 
 async function addReferral(req, res) {
+    console.log(req);
+
     const {
       ReportersName,
       ReportersAddress,
