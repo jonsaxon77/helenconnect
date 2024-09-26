@@ -61,7 +61,7 @@ async function addReferral(req, res) {
     try {
       const result = await sql.query`
           INSERT INTO contactCaresReferrals (Area, ContactType, Outcomes, Reason,ReportersName, ReportersAddress, ReportersRelationship, ClientsFirstName, ClientsLastName, ClientsDateOfBirth, ClientsAddress, FormData, IsOnBehalfOf, IsProcessed) 
-          VALUES(${Area}, ${ContactType}, ${Outcomes}, ${Reason},${ReportersName}, ${ReportersAddress}, ${ReportersRelationship}, ${ClientsFirstName}, ${ClientsLastName}, ${ClientsDateOfBirth}, ${ClientsAddress}, ${JSON.stringify(FormData)}, ${IsOnBehalf}, ${IsProcessed});
+          VALUES(${Area}, ${ContactType}, ${Outcomes}, ${Reason},${ReportersName}, ${ReportersAddress}, ${ReportersRelationship}, ${ClientsFirstName}, ${ClientsLastName}, ${ClientsDateOfBirth}, ${ClientsAddress}, ${JSON.stringify(FormData)}, ${IsOnBehalfOf}, ${IsProcessed});
           SELECT SCOPE_IDENTITY() AS referralId; 
       `;
   
