@@ -39,8 +39,6 @@ async function getReferral(req, res) {
 
 async function addReferral(req, res) {
 
-    logger.debug(req);
-
     const {
       Area,
       ContactType,
@@ -86,10 +84,12 @@ async function addReferral(req, res) {
       };
   
       logger.info(`Created referral ${newResource.id}`);
+
       res
         .status(201)
         .location(`/api/v1/referrals/${newResource.id}`)
         .json(newResource);
+        
     } catch (err) {
       logger.error(`ReferralCtrl:: addReferral(): Error ${err}`);
       res.status(500).send(err.message);
