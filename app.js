@@ -1,14 +1,17 @@
-let express = require('express');
-const expressWinston = require('express-winston');
-const logger = require('./logger');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-const sql = require('mssql');
+import express from 'express';
+import expressWinston from 'express-winston';
+import logger from './logger.js';
+
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+
+import sql from 'mssql';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const referrals = require('./routes/referrals');
+import defaultRoutes from './routes/default.js';
+import referralsRoutes from './routes/referrals.js';
 
 dotenv.config();
 
@@ -74,12 +77,12 @@ app.use(expressWinston.logger({
  
 }));
 
-app.use('/api/referrals', referrals)
+app.use('/', defaultRoutes)
+app.use('/api/referrals', referralsRoutes)
 
 app.get('/', (req, res) => {
     res.send('Helen Connect server is operational');
 });
-
 
 app.use(expressWinston.errorLogger({
     winstonInstance: logger,
@@ -88,3 +91,5 @@ app.use(expressWinston.errorLogger({
 app.listen(process.env.PORT || PORT, function () {
     console.log("App listening on", PORT);
 });
+
+export default app;

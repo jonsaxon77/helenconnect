@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const { getReferrals, getReferral, addReferral } = require('../controllers/referrals');
+import { getReferrals, getReferral, addReferral } from '../controllers/referrals.js';
 
 router.get('/:isProcessed', getReferrals);
 router.get('/:id', getReferral);
 router.post('/', addReferral);
 
-module.exports = router;
+export default router;

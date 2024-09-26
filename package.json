@@ -4,8 +4,10 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "test": "mocha __tests__ --recursive"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -20,5 +22,11 @@
     "nodemon": "^3.1.6",
     "winston": "^3.14.2",
     "winston3-azureblob-transport": "^0.1.1"
+  },
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "chai-http": "^5.0.0",
+    "mocha": "^10.7.3",
+    "sinon": "^19.0.2"
   }
 }

@@ -1,5 +1,5 @@
-const winston = require("winston");
-const azureBlobTransport = require("winston3-azureblob-transport");
+import winston from 'winston';
+import azureBlobTransport from 'winston3-azureblob-transport';
 
 const logger = winston.createLogger({
   level: "info",
@@ -12,7 +12,7 @@ const logger = winston.createLogger({
     new azureBlobTransport({
       account: {
         name: "gosspoc",
-        key: process.env.STORAGE_KEY,
+        key: process.env.STORAGE_KEY || "L+GNA920M4FDoaTci+L83Al8Mj2u2uZenHYvAbYPL1/f0HDwSEXID0SRXrb8uqfIY4T0OkoeAOJb+ASt+SHtdw==",
       },
       containerName: "logs",
       blobName: "error_log",
@@ -25,7 +25,7 @@ const logger = winston.createLogger({
     new azureBlobTransport({
       account: {
         name: "gosspoc",
-        key: process.env.STORAGE_KEY,
+        key: process.env.STORAGE_KEY || "L+GNA920M4FDoaTci+L83Al8Mj2u2uZenHYvAbYPL1/f0HDwSEXID0SRXrb8uqfIY4T0OkoeAOJb+ASt+SHtdw==",
       },
       containerName: "logs",
       blobName: "info_log",
@@ -35,15 +35,7 @@ const logger = winston.createLogger({
       rotatePeriod: "YYYY-MM-DD",
       eol: "\n",
     }),
-
-    /*
-    new winston.transports.File({ filename: "helen-connect.log" }),
-    new winston.transports.File({
-      filename: "helen-connect-error.log",
-      level: "error",
-    }),
-    */
   ],
 });
 
-module.exports = logger;
+export default logger;
