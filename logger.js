@@ -12,7 +12,7 @@ const logger = winston.createLogger({
     new azureBlobTransport({
       account: {
         name: "gosspoc",
-        key: "L+GNA920M4FDoaTci+L83Al8Mj2u2uZenHYvAbYPL1/f0HDwSEXID0SRXrb8uqfIY4T0OkoeAOJb+ASt+SHtdw==",
+        key: process.env.STORAGE_KEY,
       },
       containerName: "logs",
       blobName: "error_log",
@@ -25,7 +25,7 @@ const logger = winston.createLogger({
     new azureBlobTransport({
       account: {
         name: "gosspoc",
-        key: "L+GNA920M4FDoaTci+L83Al8Mj2u2uZenHYvAbYPL1/f0HDwSEXID0SRXrb8uqfIY4T0OkoeAOJb+ASt+SHtdw==",
+        key: process.env.STORAGE_KEY,
       },
       containerName: "logs",
       blobName: "info_log",

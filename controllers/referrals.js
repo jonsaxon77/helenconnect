@@ -54,7 +54,7 @@ async function addReferral(req, res) {
       ClientsDateOfBirth,
       ClientsAddress,
       FormData,
-      IsOnBehalf,
+      IsOnBehalfOf,
       IsProcessed,
     } = req.body;
   
@@ -81,7 +81,7 @@ async function addReferral(req, res) {
         ClientsDateOfBirth,
         ClientsAddress,
         FormData,
-        IsOnBehalf,
+        IsOnBehalfOf,
         IsProcessed,
       };
   
