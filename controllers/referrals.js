@@ -30,6 +30,10 @@ export async function getReferral(req, res) {
     const result = await request.query(
       "SELECT * FROM contactCaresReferrals WHERE Id = @id"
     );
+
+    res.status(200).json(result);
+
+    return result;
   } catch (err) {
     logger.error(`ReferralCtrl:: getReferrals(): Error ${err}`);
     res.status(500).json({message: err.message});
