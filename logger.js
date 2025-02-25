@@ -27,7 +27,7 @@ const logger = winston.createLogger({
     }),
     new azureBlobTransport({
       account: {
-        name: "gosspoc",
+        name: "helen",
         key: process.env.STORAGE_KEY,
       },
       containerName: "logs",
