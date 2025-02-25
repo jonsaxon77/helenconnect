@@ -1,5 +1,8 @@
 import winston from 'winston';
 import azureBlobTransport from 'winston3-azureblob-transport';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const logger = winston.createLogger({
   level: "info",
@@ -12,7 +15,7 @@ const logger = winston.createLogger({
     new azureBlobTransport({
       account: {
         name: "gosspoc",
-        key: process.env.STORAGE_KEY || "L+GNA920M4FDoaTci+L83Al8Mj2u2uZenHYvAbYPL1/f0HDwSEXID0SRXrb8uqfIY4T0OkoeAOJb+ASt+SHtdw==",
+        key: process.env.STORAGE_KEY,
       },
       containerName: "logs",
       blobName: "error_log",
@@ -25,7 +28,7 @@ const logger = winston.createLogger({
     new azureBlobTransport({
       account: {
         name: "gosspoc",
-        key: process.env.STORAGE_KEY || "L+GNA920M4FDoaTci+L83Al8Mj2u2uZenHYvAbYPL1/f0HDwSEXID0SRXrb8uqfIY4T0OkoeAOJb+ASt+SHtdw==",
+        key: process.env.STORAGE_KEY,
       },
       containerName: "logs",
       blobName: "info_log",
